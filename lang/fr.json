@@ -1,0 +1,28 @@
+{
+    "enhancedcombathud-knight" : {
+        "TITLES":{
+            "Aspects":"Aspects",
+            "Caracteristiques":"Caractéristiques",
+            "Distance":"Distance",
+            "Contact":"Contact",
+            "Tourelle":"Tourelle",
+            "OD1":"OD1",
+            "OD2":"OD2",
+            "OD3":"OD3",
+            "OD4":"OD4",
+            "OD5":"OD6",
+            "Restore":"Restauration",
+            "ActionSpeciales":"Actions spéciales",
+            "Informations":"Infos"
+        },
+        "OTHER":{
+            "Rack":"Mettre l'arme au rack d'armure",
+            "Equip":"Sortir l'arme du rack d'armure",
+            "Lock":"Clique molette pour verrouiller le tooltip",
+            "DepenseEnergie":"Dépense d'énergie",
+            "DonEnergie":"Don d'énergie",
+            "ActiverEffet":"Activer un effet ?",
+            "Score":"Score"
+        }
+    }
+}

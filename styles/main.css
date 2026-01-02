@@ -1,0 +1,147 @@
+.rollDialog div.dialog-buttons button {
+  background: RGB(76 74 90) !important;
+  opacity: 100;
+}
+
+.extended-combat-hud .weapon-sets .weapon-set > .set.set-primary:before,
+.extended-combat-hud .weapon-sets .weapon-set > .set.set-primary:after {
+  border: 0px;
+}
+
+.extended-combat-hud .weapon-sets .weapon-set.active:before,
+.extended-combat-hud .weapon-sets .weapon-set.active:after,
+.extended-combat-hud .weapon-sets .weapon-set:hover:before {
+  top: 0%;
+}
+
+.extended-combat-hud .weapon-sets .weapon-set {
+  cursor: pointer;
+}
+
+.extended-combat-hud .portrait-stat-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-end;
+  position: absolute;
+}
+
+.extended-combat-hud .portrait-hud .portrait-stat-side--center {
+  grid-column: 1/3;
+}
+
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr {
+  line-height: 33px;
+  justify-content: space-between;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data {
+  width: 92px;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data input {
+  text-align: center;
+  padding: 0px;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data input.flux, .extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data input.impregnation, .extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data input.contrecoups {
+  grid-column: 1/4;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data span {
+  text-align: center;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data span.cdf, .extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data span.egide {
+  grid-column: 1/4;
+}
+.extended-combat-hud .portrait-hud .portrait-stat-block-lr div.data.full {
+  grid-template-columns: 1fr;
+}
+
+.extended-combat-hud .portrait-hud,
+.extended-combat-hud .ability-menu {
+  min-width: 420px;
+}
+
+.extended-combat-hud .action-hud .features-accordion .capacity-element {
+  filter: invert(1);
+}
+
+.extended-combat-hud .action-hud .capacity-element {
+  background-size: contain;
+  max-height: 100px;
+}
+.extended-combat-hud .action-hud .capacity-element.inactivate {
+  filter: grayscale(100%);
+}
+.extended-combat-hud .action-hud .capacity-element.inactivate:hover {
+  filter: invert(1);
+}
+
+.extended-combat-hud .action-hud .action-element.inactivate {
+  filter: grayscale(100%);
+}
+.extended-combat-hud .action-hud .action-element.inactivate:hover {
+  filter: invert(1);
+}
+
+.extended-combat-hud .action-hud .feature-element.center .feature-element-title {
+  text-align: center;
+}
+
+.extended-combat-hud .action-hud .module-element {
+  filter: invert(1);
+}
+.extended-combat-hud .action-hud .module-element.inactivate:hover {
+  filter: invert(1);
+}
+
+.extended-combat-hud .portrait-hud .player-buttons {
+  right: 0px;
+  top: calc(-50px - 4rem - 37px);
+  flex-wrap: wrap;
+  max-width: 100px;
+}
+.extended-combat-hud .portrait-hud .player-buttons .player-button[data-tooltip=Minimize] {
+  width: 100%;
+  margin-top: 1px;
+}
+
+div.ech-tooltip div.ech-tooltip-body i {
+  position: absolute;
+  top: 5px;
+}
+div.ech-tooltip div.ech-tooltip-body .ech-tooltip-properties .ech-tooltip-badge:first-of-type {
+  background-color: var(--ech-buttons-base-background) !important;
+}
+
+dialog.dialog.knightAsk div.dialog-content label span {
+  font-variant: small-caps;
+  font-size: 15px;
+}
+dialog.dialog.knightAsk div.dialog-content label.number {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  align-items: center;
+}
+dialog.dialog.knightAsk div.dialog-content label.number input {
+  text-align: center;
+}
+dialog.dialog.knightAsk div.dialog-content label.select {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+}
+dialog.dialog.knightAsk div.dialog-content label.select input {
+  text-align: center;
+}
+dialog.dialog.knightAsk.largeSelect div.dialog-content label.select {
+  grid-template-columns: 1fr 200px;
+}
+
+div.knight.rollDialog.ech-highjack-window {
+  max-height: 600px !important;
+}
+div.knight.rollDialog.ech-highjack-window header {
+  padding: 1rem 0.5rem !important;
+}

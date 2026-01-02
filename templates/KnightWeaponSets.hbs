@@ -1,0 +1,13 @@
+	<div>
+		{{#each sets}}
+		{{log this}}
+		<div class="weapon-set weapon-set-singleslot" data-type="switchWeapons" data-set="{{@key}}"
+		data-tooltip="{{ifThen
+		primary
+		(concat primary.name "<br/>" (ifThen primary.system.equipped (localize "enhancedcombathud-knight.OTHER.Rack") (localize "enhancedcombathud-knight.OTHER.Equip")))
+		""}}">
+			<div class="set set-primary" draggable="true" data-set="{{@key}}" data-slot="primary" style="background-image: url({{primary.img}})"></div>
+		</div>
+
+		{{/each}}
+	</div>

@@ -1,0 +1,50 @@
+{
+  "id": "enhancedcombathud-knight",
+  "title": "ARGON - Combat HUD (Knight)",
+  "version": "#{VERSION}#",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "description": "",
+  "styles": [
+    "styles/main.css"
+  ],
+  "esmodules": [
+	  "scripts/main.js"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
+    }
+  ],
+  "relationships": {
+    "requires": [
+      {
+        "id": "enhancedcombathud",
+        "type": "module",
+        "compatibility": {}
+      }
+    ],
+    "systems": [
+      {
+        "id": "knight",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "changelog": "https://raw.githubusercontent.com/Zakarik/foundry-knight/main/changelog.md"
+}

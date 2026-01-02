@@ -1,0 +1,28 @@
+{
+    "enhancedcombathud-knight" : {
+        "TITLES":{
+            "Aspects":"Aspects",
+            "Caracteristiques":"Characteristics",
+            "Distance":"Ranged",
+            "Contact":"Contact",
+            "Tourelle":"Turret",
+            "OD1":"OD1",
+            "OD2":"OD2",
+            "OD3":"OD3",
+            "OD4":"OD4",
+            "OD5":"OD6",
+            "Restore":"Restoration",
+            "ActionSpeciales":"Special actions",
+            "Informations":"Infos"
+        },
+        "OTHER":{
+            "Rack":"Place the weapon in the armory rack.",
+            "Equip":"Remove the weapon from the armor rack",
+            "Lock":"Click the scroll wheel to lock the tooltip",
+            "DepenseEnergie":"Energy expenditure",
+            "DonEnergie":"Gift of energy",
+            "ActiverEffet":"Activate an effect?",
+            "Score":"Score"
+        }
+    }
+}

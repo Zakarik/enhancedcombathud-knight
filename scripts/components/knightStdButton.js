@@ -275,15 +275,6 @@ export function makeKnightModulePanelButton(ARGON, KnightActionAsItemButton) {
           const activeBase = data?.system?.active?.base;
           const activePNJ = data?.system?.active?.pnj;
           const listPNJ = actuel?.pnj?.liste ?? {};
-          let noOther = false;
-
-          if(actuel.arme?.has) noOther = true;
-          if(actuel.bonus?.has) noOther = true;
-          if(actuel.effets?.has) noOther = true;
-          if(actuel.ersatz?.bard?.has) noOther = true;
-          if(actuel.ersatz?.rogue?.has) noOther = true;
-          if(actuel.jetsimple?.has) noOther = true;
-          if(actuel.overdrives?.has) noOther = true;
 
           let buttons = [];
 
@@ -292,21 +283,21 @@ export function makeKnightModulePanelButton(ARGON, KnightActionAsItemButton) {
             icon:m.img,
           };
 
-          if(energieMinute === 0 && energieTour === 0 && !hasPNJ && !isPermanent && !activeBase && noOther) {
+          if(energieMinute === 0 && energieTour === 0 && !hasPNJ && !isPermanent && !activeBase) {
             buttons.push(new KnightModuleButton(foundry.utils.mergeObject(std, {
               name:`${game.i18n.localize('KNIGHT.AUTRE.Activer')}`,
               key:`other`,
             })));
           }
 
-          if(energieTour > 0  && !isPermanent && !activeBase && noOther) {
+          if(energieTour > 0  && !isPermanent && !activeBase) {
             buttons.push(new KnightModuleButton(foundry.utils.mergeObject(std, {
               name:`${game.i18n.localize('KNIGHT.AUTRE.Activer')} (${actuel.energie.tour.label})`,
               key:`tour`,
             })));
           }
 
-          if(energieMinute > 0  && !isPermanent && !activeBase && noOther) {
+          if(energieMinute > 0  && !isPermanent && !activeBase) {
             buttons.push(new KnightModuleButton(foundry.utils.mergeObject(std, {
               name:`${game.i18n.localize('KNIGHT.AUTRE.Activer')} (${actuel.energie.minute.label})`,
               key:`minute`,

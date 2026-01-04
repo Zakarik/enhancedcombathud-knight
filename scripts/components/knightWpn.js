@@ -853,7 +853,8 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
     }
 
     get label() {
-        return game.i18n.localize(`KNIGHT.COMBAT.GRENADES.${capitalizeFirstLetter(this.key)}`);
+      const data = this.data;
+      return data?.custom ? data.label : game.i18n.localize(`KNIGHT.COMBAT.GRENADES.${capitalizeFirstLetter(this.key)}`);
     }
 
     get icon() {

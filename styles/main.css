@@ -145,3 +145,7 @@ div.knight.rollDialog.ech-highjack-window {
 div.knight.rollDialog.ech-highjack-window header {
   padding: 1rem 0.5rem !important;
 }
+div.knight.rollDialog.ech-highjack-window header a.popout-module-button {
+  font-size: 14px !important;
+  margin-right: 18px !important;
+}

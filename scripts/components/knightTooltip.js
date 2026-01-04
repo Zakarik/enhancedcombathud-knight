@@ -29,6 +29,12 @@ const generateProperties = (e) => {
   }
 };
 
+const generateCustomProperties = (e) => {
+  return {
+    label:e.label,
+  }
+}
+
 const capacityTooltip = {
   async generate(item, base={}) {
     let{
@@ -37,7 +43,7 @@ const capacityTooltip = {
     const data = item.system;
 
     const ctx = { actor, data, description, details, propertiesLabel, properties, footerText };
-    console.error(capacite);
+
     const handler = getTooltipHandler(capacite);
     await handler.activate?.(
       ctx,
@@ -204,6 +210,8 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
 
     propertiesLabel = `KNIGHT.EFFETS.Label`;
 
+    console.error(system);
+
     if(system?.type === "contact" && system?.options2mains?.has && system?.options2mains?.actuel === '2mains') {
       for(let e of system?.effets2mains?.raw ?? []) {
         const generator = generateProperties(e);
@@ -213,6 +221,10 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
           properties.push(generator);
         }
       }
+
+      for(let e of system?.effets2mains?.custom ?? []) {
+        properties.push(generateCustomProperties(e));
+      }
     } else {
       for(let e of system?.effets?.raw ?? []) {
         const generator = generateProperties(e);
@@ -221,6 +233,10 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
         if (!properties.some(prop => prop.label === generator.label)) {
           properties.push(generator);
         }
+      }
+
+      for(let e of system?.effets?.custom ?? []) {
+        properties.push(generateCustomProperties(e));
       }
     }
 
@@ -252,6 +268,10 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
         }
       }
 
+      for(let e of system?.distance?.custom ?? []) {
+        properties.push(generateCustomProperties(e));
+      }
+
       if(system?.optionsmunitions?.has) {
         for(let e of system?.optionsmunitions?.liste?.[system?.optionsmunitions?.actuel]?.raw ?? []) {
           const generator = generateProperties(e);
@@ -261,6 +281,11 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
             properties.push(generator);
           }
         }
+
+        for(let e of system?.optionsmunitions?.liste?.[system?.optionsmunitions?.actuel]?.custom ?? []) {
+          properties.push(generateCustomProperties(e));
+        }
+
       }
     }
 
@@ -271,6 +296,10 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
       if (!properties.some(prop => prop.label === generator.label)) {
         properties.push(generator);
       }
+    }
+
+    for(let e of armorSpecial?.custom ?? []) {
+      properties.push(generateCustomProperties(e));
     }
 
     const collator = new Intl.Collator(game?.i18n?.lang || "fr", {

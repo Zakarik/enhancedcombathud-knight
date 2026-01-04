@@ -186,6 +186,11 @@ div.knight.rollDialog.ech-highjack-window {
     max-height: 600px !important;
 
     header {
-        padding:1rem 0.5rem !important
+        padding:1rem 0.5rem !important;
+
+        a.popout-module-button {
+            font-size: 14px !important;
+            margin-right: 18px !important;
+        }
     }
 }

@@ -24,6 +24,11 @@
     grid-template-columns: 1fr 1fr;
     align-items: flex-end;
     position: absolute;
+
+    input,
+    select {
+        color: var(--input-text-color) !important;
+    }
 }
 
 .extended-combat-hud .portrait-hud .portrait-stat-side--center {
@@ -191,6 +196,21 @@ div.knight.rollDialog.ech-highjack-window {
         a.popout-module-button {
             font-size: 14px !important;
             margin-right: 18px !important;
+        }
+    }
+}
+
+div.extended-combat-hud {
+    div.ability-menu {
+        li.ability-title {
+            span {
+                text-align: center;
+                grid-column: 1 / 9;
+
+                &::empty {
+                    display:none;
+                }
+            }
         }
     }
 }

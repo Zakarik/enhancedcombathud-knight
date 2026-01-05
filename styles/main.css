@@ -25,6 +25,10 @@
   align-items: flex-end;
   position: absolute;
 }
+.extended-combat-hud .portrait-stat-wrapper input,
+.extended-combat-hud .portrait-stat-wrapper select {
+  color: var(--input-text-color) !important;
+}
 
 .extended-combat-hud .portrait-hud .portrait-stat-side--center {
   grid-column: 1/3;
@@ -148,4 +152,12 @@ div.knight.rollDialog.ech-highjack-window header {
 div.knight.rollDialog.ech-highjack-window header a.popout-module-button {
   font-size: 14px !important;
   margin-right: 18px !important;
+}
+
+div.extended-combat-hud div.ability-menu li.ability-title span {
+  text-align: center;
+  grid-column: 1/9;
+}
+div.extended-combat-hud div.ability-menu li.ability-title span::empty {
+  display: none;
 }

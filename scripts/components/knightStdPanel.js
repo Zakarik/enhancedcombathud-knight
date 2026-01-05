@@ -923,8 +923,7 @@ export function makeKnightDrawerPanel(ARGON) {
               returncategories.push({
                   gridCols: "7fr 2fr",
                   captions: [
-                    { label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a]) },
-                    { label: "" },
+                    { label: `${game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a])} (${mainData.value})` },
                   ],
                   buttons:listCaracteristiques[a],
               })
@@ -969,8 +968,7 @@ export function makeKnightDrawerPanel(ARGON) {
       returncategories.push({
           gridCols: "7fr 2fr",
           captions: [
-            { label: game.i18n.localize('KNIGHT.ASPECTS.Aspects') },
-            { label: "" },
+            { label: `${game.i18n.localize('KNIGHT.ASPECTS.Aspects')}`},
           ],
           buttons:listAspects,
       })
@@ -1042,8 +1040,7 @@ export function makeKnightDrawerPanel(ARGON) {
                       returncategories.push({
                           gridCols: "7fr 2fr",
                           captions: [
-                            { label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a]) },
-                            { label: "" },
+                            { label: `${game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a])} (${mainData.value})`},
                           ],
                           buttons:listCaracteristiques[a],
                       })
@@ -1082,7 +1079,6 @@ export function makeKnightDrawerPanel(ARGON) {
                   gridCols: "7fr 2fr",
                   captions: [
                     { label: game.i18n.localize('KNIGHT.ASPECTS.Aspects') },
-                    { label: "" },
                   ],
                   buttons:listAspects,
               })

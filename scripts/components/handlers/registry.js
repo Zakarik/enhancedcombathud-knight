@@ -110,10 +110,10 @@ async function registerAllRestore() {
   registerRestore("armure", h.stdRecoverHandler);
   registerRestore("energie", h.stdRecoverHandler);
   registerRestore("espoir", h.stdRecoverHandler);
-  registerRestore("contact", h.stdRecoverHandler);
-  registerRestore("grenades", h.grenadesRecoverHandler);
-  registerRestore("nods", h.nodsRecoverHandler);
-  registerRestore("chargeur", h.chargeurRecoverHandler);
+  registerRestore("contacts", h.stdRecoverHandler);
+  registerRestore("grenades", h.stdRecoverHandler);
+  registerRestore("nods", h.stdRecoverHandler);
+  registerRestore("chargeur", h.stdRecoverHandler);
 }
 
 export async function registerAllKnightArgon() {

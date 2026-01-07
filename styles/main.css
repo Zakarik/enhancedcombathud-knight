@@ -111,7 +111,7 @@
   margin-top: 1px;
 }
 
-div.ech-tooltip div.ech-tooltip-body i {
+div.ech-tooltip div.ech-tooltip-body > i {
   position: absolute;
   top: 5px;
 }

@@ -191,10 +191,10 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
             }
           } else if(item.type === 'module' && wearArmor) {
             if(
-              (item.system?.active?.base ?? false) ||
-              (item.system?.niveau?.actuel?.permanent ?? false) &&
+              ((item.system?.active?.base ?? false) ||
+              (item.system?.niveau?.actuel?.permanent ?? false)) &&
               (item.system?.niveau?.actuel?.arme?.has ?? false)) {
-                console.error(actor);
+                console.error(item);
               if(actor.type === 'vehicule' && !item?.system?.niveau?.actuel?.whoActivate && !actor.system.options.noPassager) continue;
 
                 if(item.system.niveau.actuel.arme.type === 'contact') {

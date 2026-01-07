@@ -51,8 +51,12 @@ const capacityTooltip = {
       { capacite, special, variant }
     );
 
+    console.error(description);
+
     description = description.join(' ');
     propertiesLabel = propertiesLabel.join(' ');
+
+    console.error(description);
 
     return { title, description, details, propertiesLabel, properties, footerText };
   }

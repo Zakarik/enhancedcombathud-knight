@@ -73,7 +73,7 @@ export function makeKnightRestorePanel(ARGON) {
             } else {
                 buttons.push(new ARGON.MAIN.BUTTONS.SplitButton(new KnightRestoreButton({type:'sante'}), new KnightRestoreButton({type:'armure'})));
                 buttons.push(new ARGON.MAIN.BUTTONS.SplitButton(new KnightRestoreButton({type:'energie'}), new KnightRestoreButton({type:'espoir'})));
-                buttons.push(new ARGON.MAIN.BUTTONS.SplitButton(new KnightRestoreButton({type:'contact'}), new KnightRestoreButton({type:'chargeur'})));
+                buttons.push(new ARGON.MAIN.BUTTONS.SplitButton(new KnightRestoreButton({type:'contacts'}), new KnightRestoreButton({type:'chargeur'})));
                 buttons.push(new ARGON.MAIN.BUTTONS.SplitButton(new KnightRestoreButton({type:'nods'}), new KnightRestoreButton({type:'grenades'})));
             }
 

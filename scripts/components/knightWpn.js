@@ -28,7 +28,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
       }
 
       get id() {
-          return `${this.type}-${this.actor.id}-${this._items.length}`;
+          return `${this.actor.id}-${this.type}-KnightWpnPanelButton`;
       }
 
       get label() {
@@ -194,7 +194,6 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
               ((item.system?.active?.base ?? false) ||
               (item.system?.niveau?.actuel?.permanent ?? false)) &&
               (item.system?.niveau?.actuel?.arme?.has ?? false)) {
-                console.error(item);
               if(actor.type === 'vehicule' && !item?.system?.niveau?.actuel?.whoActivate && !actor.system.options.noPassager) continue;
 
                 if(item.system.niveau.actuel.arme.type === 'contact') {
@@ -257,6 +256,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                   num:'borealis',
                   armure:armure.id,
                   data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.offensif.degats.dice,
                           fixe:0
@@ -281,6 +281,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                   num:'borealis',
                   armure:armure.id,
                   data:{
+                    description:dataC.description,
                     degats:{
                         dice:dataC.offensif.degats.dice,
                         fixe:0
@@ -311,6 +312,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'vague',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.vague.degats.dice,
                           fixe:0
@@ -335,6 +337,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'salve',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.salve.degats.dice,
                           fixe:0
@@ -359,6 +362,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'rayon',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.rayon.degats.dice,
                           fixe:0
@@ -386,6 +390,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'vague',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.vague.degats.dice,
                           fixe:0
@@ -410,6 +415,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'salve',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.salve.degats.dice,
                           fixe:0
@@ -434,6 +440,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'rayon',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       degats:{
                           dice:dataC.rayon.degats.dice,
                           fixe:0
@@ -464,6 +471,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'lame',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.lame.degats.dice,
                             fixe:dataC.polymorphie.lame.degats.fixe,
@@ -491,6 +499,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'lame2',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.lame.degats.dice,
                             fixe:dataC.polymorphie.lame.degats.fixe,
@@ -519,6 +528,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'griffe',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.griffe.degats.dice,
                             fixe:dataC.polymorphie.griffe.degats.fixe,
@@ -547,6 +557,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'griffe2',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.griffe.degats.dice,
                             fixe:dataC.polymorphie.griffe.degats.fixe,
@@ -574,6 +585,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'canon',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.canon.degats.dice,
                             fixe:dataC.polymorphie.canon.degats.fixe,
@@ -601,6 +613,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                       num:'canon2',
                       armure:armure.id,
                       data:{
+                        description:dataC.description,
                         degats:{
                             dice:dataC.polymorphie.canon.degats.dice,
                             fixe:dataC.polymorphie.canon.degats.fixe,
@@ -629,6 +642,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
                     num:'longbow',
                     armure:armure.id,
                     data:{
+                      description:dataC.description,
                       energie:0,
                       portee:dataC.portee.min,
                       type:'distance',
@@ -792,7 +806,8 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
       }
 
       async getTooltipData() {
-        const tooltipData = await getTooltipDetails(this.actor, {name:`${this.label}`, type:'capacity', system:this.data});
+
+        const tooltipData = await getTooltipDetails(this.actor, {name:`${this.label}`, type:'armes', system:this.data});
         return tooltipData;
       }
 
@@ -801,8 +816,14 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
 
         if(!target) return;
         ui.ARGON.interceptNextDialog(event.currentTarget);
+        let dialog;
 
-        const dialog = this.actor.system.useWpn('armure', {
+        if(this.keyNum === 'longbow') dialog = this.actor.system.useWpn('longbow', {
+            id:this.keyArmure,
+            num:this.keyNum,
+            type:this.range,
+          });
+        else dialog = this.actor.system.useWpn('armure', {
           id:this.keyArmure,
           num:this.keyNum,
           type:this.range,

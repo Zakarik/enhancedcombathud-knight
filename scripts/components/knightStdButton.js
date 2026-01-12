@@ -214,7 +214,7 @@ export function makeKnightModulePanelButton(ARGON, KnightActionAsItemButton) {
       }
 
       get id() {
-          return `modules-${this.actor.id}-${this._items.length}`;
+          return `${this.actor.id}-KnightModulePanelButton`;
       }
 
       get label() {

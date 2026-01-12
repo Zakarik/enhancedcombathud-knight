@@ -64,9 +64,10 @@ export function makeKnightRestorePanel(ARGON) {
         async _getButtons() {
             const actor = this.actor;
             const type = actor.type;
+            const canRestore = game.settings.get('knight', "canPJRestaure");
             const buttons = [];
 
-            if(ignored.includes(type)) return buttons;
+            if(ignored.includes(type) || (!canRestore && !game.user.isGM)) return buttons;
 
             if(onlyChargeur.includes(type)) {
                 buttons.push(new KnightRestoreButton({type:'chargeur'}));

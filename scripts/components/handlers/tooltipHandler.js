@@ -1860,9 +1860,6 @@ export const maHandler = {
 
     const labelDice = "KNIGHT.JETS.Des-short";
 
-    console.error(data);
-    console.error(type);
-
     description.push(game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.${key.toUpperCase()}.Description`));
 
     details.push({

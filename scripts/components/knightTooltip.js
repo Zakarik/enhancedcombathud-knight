@@ -43,7 +43,6 @@ const capacityTooltip = {
     const data = item.system;
 
     const ctx = { actor, data, description, details, propertiesLabel, properties, footerText };
-
     const handler = getTooltipHandler(capacite);
     await handler.activate?.(
       ctx,
@@ -51,12 +50,8 @@ const capacityTooltip = {
       { capacite, special, variant }
     );
 
-    console.error(description);
-
     description = description.join(' ');
     propertiesLabel = propertiesLabel.join(' ');
-
-    console.error(description);
 
     return { title, description, details, propertiesLabel, properties, footerText };
   }
@@ -143,7 +138,6 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
 
     title = item.name;
     footerText = game.i18n.localize("enhancedcombathud-knight.OTHER.Lock");
-
     if(type === 'capacity') {
       title = item.system.label;
 
@@ -182,6 +176,7 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
       });
     }
 
+    if(item.system.description && !description.length) description.push(item.system.description);
     if(type === 'module' && tooltipFor === 'wpn') system = item.system.niveau.actuel.arme;
     else if(type === 'capacite' && tooltipFor === 'wpn') system = item.system.attaque;
     else system = item.system;
@@ -213,8 +208,6 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
     });
 
     propertiesLabel = `KNIGHT.EFFETS.Label`;
-
-    console.error(system);
 
     if(system?.type === "contact" && system?.options2mains?.has && system?.options2mains?.actuel === '2mains') {
       for(let e of system?.effets2mains?.raw ?? []) {

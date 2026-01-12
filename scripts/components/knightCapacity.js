@@ -1064,7 +1064,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
     }
 
     get id() {
-        return `${this.armure.id}-${this.actor.id}`;
+        return `${this.armure.id}-${this.actor.id}-KnightArmorLegendCapacitePanelButton`;
     }
 
     get label() {
@@ -1828,7 +1828,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
       }
 
       get id() {
-        return `${this.actor.id}-${this._btn.length}-KnightMAPanelButton`;
+        return `${this.actor.id}-KnightMAPanelButton`;
       }
 
       get label() {
@@ -2012,7 +2012,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
       }
 
       get id() {
-        return `${this.actor.id}-${this._btn.length}-${this.type}-KnightMAModulePanelButton`;
+        return `${this.actor.id}-${this.type}-KnightMAModulePanelButton`;
       }
 
       get label() {

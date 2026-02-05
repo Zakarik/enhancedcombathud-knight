@@ -134,15 +134,18 @@
 div.ech-tooltip {
 
     div.ech-tooltip-body {
-
-        > i {
-            position: absolute;
-            top: 5px;
-        }
-
         .ech-tooltip-properties .ech-tooltip-badge:first-of-type {
             background-color: var(--ech-buttons-base-background) !important;
         }
+
+        .ech-tooltip-details > div {
+            grid-column: 1 / 4 !important;
+        }
+    }
+
+    h4.ech-tooltip-subtitle {
+        font-size: 16px;
+        letter-spacing: 1.4px;
     }
 }
 

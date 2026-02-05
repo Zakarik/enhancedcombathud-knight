@@ -9,8 +9,8 @@ import {
   getArmorLegend,
 } from "/systems/knight/module/helpers/common.mjs";
 
-import { PARTIALS_PATH } from "/modules/enhancedcombathud/scripts/core/hud.js";
-import { TargetPicker } from "/modules/enhancedcombathud/scripts/core/targetPicker.js";
+/*import "/modules/enhancedcombathud/scss/module.scss";
+import { TargetPicker } from "/modules/enhancedcombathud/scripts/app/targetPicker.js";*/
 
 export function makeKnightItemButton(ARGON) {
     return class KnightItemButton extends ARGON.MAIN.BUTTONS.ItemButton {
@@ -65,15 +65,21 @@ export function makeKnightItemButton(ARGON) {
 }
 
 export function makeKnightActionAsItemButton(ARGON) {
-    return class KnightActionAsItemButton extends ARGON.MAIN.BUTTONS.ActionButton {
-      constructor({key, data}) {
-        super();
+    return class KnightActionAsItemButton extends ARGON.MAIN.BUTTONS.ItemButton {
+      constructor({ key, data, ...rest }) {
+        super({
+          isWeaponSet: false,
+          isPrimary: false,
+          inActionPanel:false,
+          item:true,
+          ...rest
+        });
         this.key = key;
         this.data = data;
       }
 
       get template() {
-          return `${PARTIALS_PATH}ActionButton.hbs`;
+          return `modules/enhancedcombathud/templates/partials/ActionButton.hbs`;
       }
 
       get hasTooltip() {
@@ -97,18 +103,6 @@ export function makeKnightActionAsItemButton(ARGON) {
 
       get useTargetPicker() {
         return game.settings.get("enhancedcombathud", "rangepicker");
-      }
-
-      async _onLeftClick(event) {
-        let isTargetPicker = false;
-
-        if (this.useTargetPicker && this.targets > 0) {
-          isTargetPicker = true;
-          const picker = new TargetPicker({token: this.token, targets: this.targets, ranges: this.ranges});
-          const result = await picker.promise;
-          isTargetPicker = false;
-          return result;
-        }
       }
     }
 }

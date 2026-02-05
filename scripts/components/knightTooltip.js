@@ -38,11 +38,12 @@ const generateCustomProperties = (e) => {
 const capacityTooltip = {
   async generate(item, base={}) {
     let{
-      actor, title, description, details, propertiesLabel, properties, footerText,
+      actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
       capacite, special, variant } = base;
     const data = item.system;
 
-    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText };
+    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText, subtitle };
+
     const handler = getTooltipHandler(capacite);
     await handler.activate?.(
       ctx,
@@ -53,18 +54,18 @@ const capacityTooltip = {
     description = description.join(' ');
     propertiesLabel = propertiesLabel.join(' ');
 
-    return { title, description, details, propertiesLabel, properties, footerText };
+    return { title, description, details, propertiesLabel, properties, footerText, subtitle };
   }
 }
 
 const prolongateTooltip = {
   async generate(item, base={}) {
     let{
-      actor, title, description, details, propertiesLabel, properties, footerText,
+      actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
       capacite, special, variant } = base;
     const data = item.system;
 
-    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText };
+    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText, subtitle };
     const handler = getTooltipHandler(capacite);
     await handler.prolongate?.(
       ctx,
@@ -75,18 +76,18 @@ const prolongateTooltip = {
     description = description.join(' ');
     propertiesLabel = propertiesLabel.join(' ');
 
-    return { title, description, details, propertiesLabel, properties, footerText };
+    return { title, description, details, propertiesLabel, properties, footerText, subtitle };
   }
 }
 
 const moduleTooltip = {
   async generate(item, base={}) {
     let{
-      actor, title, description, details, propertiesLabel, properties, footerText,
+      actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
       capacite, special, variant } = base;
     const data = item.system;
 
-    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText };
+    const ctx = { actor, data, description, details, propertiesLabel, properties, footerText, subtitle };
     const handler = getTooltipHandler('module');
     await handler.activate?.(
       ctx,
@@ -96,19 +97,19 @@ const moduleTooltip = {
     description = description.join(' ');
     propertiesLabel = propertiesLabel.join(' ');
 
-    return { title, description, details, propertiesLabel, properties, footerText };
+    return { title, description, details, propertiesLabel, properties, footerText, subtitle };
   }
 }
 
 const maTooltip = {
   async generate(item, base={}) {
     let{
-      actor, title, description, details, propertiesLabel, properties, footerText,
+      actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
       capacite, special, variant } = base;
 
       title = game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.${item.system.data.key.toUpperCase()}.Label`);
 
-    const ctx = { actor, item, description, details, propertiesLabel, properties, footerText };
+    const ctx = { actor, item, description, details, propertiesLabel, properties, footerText, subtitle };
     const handler = getTooltipHandler('mechaarmure');
     await handler.activate?.(
       ctx,
@@ -134,15 +135,16 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
     let properties = [];
     let description = [];
     let propertiesLabel = [];
-    let title, footerText;
+    let title, footerText, subtitle;
 
     title = item.name;
-    footerText = game.i18n.localize("enhancedcombathud-knight.OTHER.Lock");
+    subtitle = game.i18n.localize("enhancedcombathud-knight.OTHER.Lock");
+
     if(type === 'capacity') {
       title = item.system.label;
 
       return await capacityTooltip.generate(item, {
-        actor, title, description, details, propertiesLabel, properties, footerText,
+        actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
         capacite, special, variant,
       });
     }
@@ -150,12 +152,12 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
       title = item.system.label;
 
       return await prolongateTooltip.generate(item, {
-        actor, title, description, details, propertiesLabel, properties, footerText,
+        actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
         capacite, special, variant,
       });
     }
     else if(type === 'module' && tooltipFor !== 'wpn') return await moduleTooltip.generate(item, {
-      actor, title, description, details, propertiesLabel, properties, footerText,
+      actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
       capacite, special, variant,
     });
     else if(type === 'capacite' && tooltipFor !== 'wpn') {
@@ -171,7 +173,7 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
     }
     else if(type === 'mechaarmure') {
       return await maTooltip.generate(item, {
-        actor, title, description, details, propertiesLabel, properties, footerText,
+        actor, title, description, details, propertiesLabel, properties, footerText, subtitle,
         capacite, special, variant,
       });
     }
@@ -306,5 +308,5 @@ export async function getTooltipDetails(actor, item, tooltipFor='wpn') {
     });
     properties.sort((a, b) => collator.compare(String(a?.label ?? ""), String(b?.label ?? "")));
 
-    return { title, description, details, propertiesLabel, properties, footerText };
+    return { title, subtitle, description, details, propertiesLabel, properties, footerText };
 }

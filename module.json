@@ -1,6 +1,6 @@
 {
   "id": "enhancedcombathud-knight",
-  "title": "ARGON - Combat HUD (Knight)",
+  "title": "Argon - Combat HUD (Knight)",
   "version": "#{VERSION}#",
   "compatibility": {
     "minimum": "13",

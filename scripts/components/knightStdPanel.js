@@ -1296,6 +1296,12 @@ export function makeKnightSpecialPanel(ARGON) {
 
           roll.sendMessage({text:game.i18n.localize('KNIGHT.JETS.DebordementAugmente'), classes:'important'});
           break;
+
+        case 'unTarget':
+          game.user.targets.forEach(token =>
+            token.setTarget(false, {releaseOthers: false, groupSelection: true}));
+          game.user.broadcastActivity({targets: game.user.targets.ids});
+          break;
       }
     }
   }
@@ -1332,6 +1338,13 @@ export function makeKnightSpecialPanel(ARGON) {
           list = this.bandeList;
           break;
       }
+
+      list.push(
+          new SpecialButton({
+            type:'unTarget',
+            label:'enhancedcombathud-knight.OTHER.UnTargetAll',
+            icon:'modules/enhancedcombathud-knight/assets/unTarget.svg',
+      }))
 
       return list;
     }

@@ -22,7 +22,8 @@
             "DepenseEnergie":"Dépense d'énergie",
             "DonEnergie":"Don d'énergie",
             "ActiverEffet":"Activer un effet ?",
-            "Score":"Score"
+            "Score":"Score",
+            "UnTargetAll":"Désélectionner toutes les cibles"
         }
     }
 }

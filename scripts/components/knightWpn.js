@@ -812,10 +812,6 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
       }
 
       async _onLeftClick(event) {
-        const target = await super._onLeftClick(event);
-
-        if(!target) return;
-        ui.ARGON.interceptNextDialog(event.currentTarget);
         let dialog;
 
         if(this.keyNum === 'longbow') dialog = this.actor.system.useWpn('longbow', {
@@ -828,31 +824,6 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
           num:this.keyNum,
           type:this.range,
         });
-
-        if(game.settings.get('enhancedcombathud', "dialogTheme")) dialog.options.classes.push('ech-highjack-window');
-        /*const hasFumigene = this.actor.statuses.has('fumigene');
-        const actor = this.actor.token ? this.actor.token.id : this.actor.id;
-        const data = this.data;
-        let label = "";
-        let dialog = undefined;
-        let modificateur = 0;
-        ui.ARGON.interceptNextDialog(event.currentTarget);
-
-        label = `${this.label}`;
-
-        if(hasFumigene && this.range === 'distance') modificateur -= 3;
-
-        dialog = new game.knight.applications.KnightRollDialog(actor, {
-          label:label,
-          wpn:`${this.key}`,
-          modificateur,
-        });
-
-        if(dialog) {
-          if(game.settings.get('enhancedcombathud', "dialogTheme")) dialog.options.classes.push('ech-highjack-window');
-
-          dialog.open();
-        }*/
       }
 
       async _renderInner() {
@@ -888,17 +859,9 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
     }
 
     async _onLeftClick(event) {
-      const target = await super._onLeftClick(event);
-
-      if(!target) return;
-
-      ui.ARGON.interceptNextDialog(event.currentTarget);
-
       const dialog = this.actor.system.useWpn('grenades', {
         type:this.key,
       });
-
-      if(game.settings.get('enhancedcombathud', "dialogTheme")) dialog.options.classes.push('ech-highjack-window');
     }
 
     async _renderInner() {
@@ -946,12 +909,6 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
       }
 
       async _onLeftClick(event) {
-        const target = await super._onLeftClick(event);
-
-        if(!target) return;
-
-        ui.ARGON.interceptNextDialog(event.currentTarget);
-
         const dialog = this.actor.system.useWpn('armesimprovisees', {
           type:this.key.includes('d') ? 'distance' : 'contact',
           name:this.ai,

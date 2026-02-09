@@ -113,7 +113,6 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
       }
 
       async _onLeftClick(event) {
-        const target = await super._onLeftClick(event);
         const capacite = this.capacite;
         const special = this.special;
         const variant = this.variant;
@@ -1633,7 +1632,6 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
     }
 
     async _onLeftClick(event) {
-      const target = await super._onLeftClick(event);
       const item = this.data;
 
       if(item.system.degats.has) {
@@ -1794,8 +1792,6 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
     }
 
     async _onLeftClick(event) {
-      const target = await super._onLeftClick(event);
-      ui.ARGON.interceptNextDialog(event.currentTarget);
       const actor = this.actor.token ? this.actor.token.id : this.actor.id;
       let bonus = 0;
 
@@ -1936,7 +1932,6 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
     }
 
     async _onLeftClick(event) {
-      const target = await super._onLeftClick(event);
       const maintype = this.type;
       const splittype = maintype.split('/');
       const type = splittype[0];

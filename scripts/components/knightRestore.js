@@ -42,7 +42,6 @@ export function makeKnightRestorePanel(ARGON) {
 		}
 
 		async _onLeftClick(event) {
-            ui.ARGON.interceptNextDialog(event.currentTarget);
             const actor = this.actor;
             const type = this.type;
             const handler = getRestoreHandler(type);

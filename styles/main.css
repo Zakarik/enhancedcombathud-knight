@@ -164,3 +164,7 @@ div.extended-combat-hud div.ability-menu li.ability-title span {
 div.extended-combat-hud div.ability-menu li.ability-title span::empty {
   display: none;
 }
+
+.extended-combat-hud .action-hud .actions-container:before {
+  text-align: center;
+}

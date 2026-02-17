@@ -917,9 +917,27 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                   data:data
                 })));
 
-                /*buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Humain')} : ${game.i18n.localize('KNIGHT.TYPE.Hostile')}`,
                   key:`${c}/_recuperation/_humain/hostile`,
+                  data:data
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Humain')} : ${game.i18n.localize('KNIGHT.TYPE.Salopard')}`,
+                  key:`${c}/_recuperation/_humain/salopard`,
+                  data:data
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Humain')} : ${game.i18n.localize('KNIGHT.TYPE.Patron')}`,
+                  key:`${c}/_recuperation/_humain/patron`,
+                  data:data
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Humain')} : ${game.i18n.localize('KNIGHT.TYPE.Bande')}`,
+                  key:`${c}/_recuperation/_humain/bande`,
                   data:data
                 })));
 
@@ -927,7 +945,25 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                   name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Anatheme')} : ${game.i18n.localize('KNIGHT.TYPE.Hostile')}`,
                   key:`${c}/_recuperation/_anatheme/hostile`,
                   data:data
-                })));*/
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Anatheme')} : ${game.i18n.localize('KNIGHT.TYPE.Salopard')}`,
+                  key:`${c}/_recuperation/_anatheme/salopard`,
+                  data:data
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Anatheme')} : ${game.i18n.localize('KNIGHT.TYPE.Patron')}`,
+                  key:`${c}/_recuperation/_anatheme/patron`,
+                  data:data
+                })));
+
+                buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
+                  name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.RAGE.TUE.Anatheme')} : ${game.i18n.localize('KNIGHT.TYPE.Bande')}`,
+                  key:`${c}/_recuperation/_anatheme/bande`,
+                  data:data
+                })));
               }
               break;
 

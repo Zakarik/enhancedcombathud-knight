@@ -1352,6 +1352,8 @@ export const warlordHandler = {
       const dataActorCapacite = actor?.system?.equipements?.armure?.capacites?.[capacite];
       let energy = 0;
 
+      description.push(data.description);
+
       if(dataWarlord) {
         energy += data?.active?.[special]?.allie
           ? (Number(dataWarlord?.energie?.prolonger) || 0) * (Number(dataActorCapacite?.[special]?.nbre) || 0)

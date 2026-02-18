@@ -33,23 +33,6 @@ import {
   registerAllKnightArgon,
 } from "./components/handlers/registry.js";
 
-Hooks.on("renderDialog", (dialog, element, content) => {
-	setTimeout(() => {
-		if (element.hasClass("ech-highjack-window") && dialog.data.title !== game.i18n.localize("KNIGHT.AUTRE.Confirmation") && !element.hasClass("bande")) {
-            //$(element[0]).css("top", "0px");
-
-			for (let input of element.find("header.window-header")) {
-				input.style.padding = "5px";
-			}
-
-			for (let input of element.find("button.dialog-button")) {
-				input.style.background = "RGB(76 74 90)";
-                input.style.opacity = "100";
-			}
-		}
-    }, 50);
-
-});
 
 Hooks.on("setup", () => {
   Hooks.on("updateItem", async (item) => {

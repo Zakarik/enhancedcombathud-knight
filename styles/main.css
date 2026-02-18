@@ -111,6 +111,9 @@
   margin-top: 1px;
 }
 
+div.ech-tooltip {
+  min-width: 400px;
+}
 div.ech-tooltip div.ech-tooltip-body .ech-tooltip-properties .ech-tooltip-badge:first-of-type {
   background-color: var(--ech-buttons-base-background) !important;
 }
@@ -167,4 +170,8 @@ div.extended-combat-hud div.ability-menu li.ability-title span::empty {
 
 .extended-combat-hud .action-hud .actions-container:before {
   text-align: center;
+}
+
+.ech-tooltip-container {
+  min-width: 400px;
 }

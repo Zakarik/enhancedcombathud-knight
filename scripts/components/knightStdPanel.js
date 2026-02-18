@@ -873,6 +873,17 @@ export function makeKnightPortraitPanel(ARGON) {
 }
 
 export function makeKnightDrawerPanel(ARGON) {
+
+  class KnightDrawerButton extends ARGON.DRAWER.DrawerButton {
+    constructor(buttons) {
+      super(buttons);
+    }
+
+    get interceptDialogs() {
+      return false;
+    }
+  }
+
   class constructCategories {
     constructor(actor) {
       this._actor = actor;
@@ -899,7 +910,7 @@ export function makeKnightDrawerPanel(ARGON) {
                   const subData = mainData.caracteristiques[c];
 
                   listCaracteristiques[a].push(
-                      new ARGON.DRAWER.DrawerButton([
+                      new KnightDrawerButton([
                           {
                               label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[c]),
                               onClick: () => {
@@ -944,7 +955,7 @@ export function makeKnightDrawerPanel(ARGON) {
         const mainData = aspects[a];
 
         listAspects.push(
-              new ARGON.DRAWER.DrawerButton([
+              new KnightDrawerButton([
                   {
                       label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a]),
                       onClick: () => {
@@ -1016,7 +1027,7 @@ export function makeKnightDrawerPanel(ARGON) {
                           const subData = mainData.caracteristiques[c];
 
                           listCaracteristiques[a].push(
-                              new ARGON.DRAWER.DrawerButton([
+                              new KnightDrawerButton([
                                   {
                                       label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[c]),
                                       onClick: () => {
@@ -1054,7 +1065,7 @@ export function makeKnightDrawerPanel(ARGON) {
                 const mainData = aspects[a];
 
                 listAspects.push(
-                      new ARGON.DRAWER.DrawerButton([
+                      new KnightDrawerButton([
                           {
                               label: game.i18n.localize(CONFIG.KNIGHT.LIST.aspectsCaracteristiques[a]),
                               onClick: () => {

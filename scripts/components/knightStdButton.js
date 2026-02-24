@@ -57,8 +57,6 @@ export function makeKnightItemButton(ARGON) {
             const dialog = this.actor.system.useWpn('wpn', {
               id:this.item.id,
             });
-
-            if(game.settings.get('enhancedcombathud', "dialogTheme")) dialog.options.classes.push('ech-highjack-window');
           }
         }
     }

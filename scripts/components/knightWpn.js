@@ -218,6 +218,16 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
             if (sys.attaque.type === "distance") {
               sections.distance.push(btn);
             }
+          } else if(item.type === 'cyberware' && item?.system?.arme?.has && item?.system?.isActive) {
+            const sys = item.system ?? {};
+
+            btn = new KnightItemButton({ item });
+
+            if (sys.arme.type === "contact") {
+              sections.contact.push(btn);
+            } else if (sys.arme.type === "distance") {
+              sections.distance.push(btn);
+            }
           }
         }
 

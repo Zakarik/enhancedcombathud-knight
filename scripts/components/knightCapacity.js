@@ -2040,359 +2040,522 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
         this.name = name;
         this.type = type;
         this._btn = this._prepareBtn();
+    }
+
+    get id() {
+      return `${this.actor.id}-${this.type}-KnightMAModulePanelButton`;
+    }
+
+    get label() {
+      return this.name;
+    }
+
+    get icon() {
+      return "modules/enhancedcombathud-knight/assets/mechaarmure.svg";
+    }
+
+    async _getPanel() {
+      const panel = new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanel({ id: this.id, accordionPanelCategories: this._btn.map(({ label, buttons, uses }) => new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanelCategory({ label, buttons, uses })) });
+
+      return panel;
+    }
+
+    _prepareBtn() {
+      const capacites = this.actor.system.configurations.liste[this.type].modules;
+      let buttons = [];
+      let prepared = [];
+
+      if(!this.actor.system.getPilote) return prepared;
+      for(let c in capacites) {
+        buttons = this._handlerCapacities(c);
+
+        prepared.push({
+          label: `KNIGHT.MECHAARMURE.MODULES.${c.toUpperCase()}.Label`,
+          buttons,
+        });
       }
 
-      get id() {
-        return `${this.actor.id}-${this.type}-KnightMAModulePanelButton`;
+      return prepared;
+    }
+
+    _handlerCapacities(key) {
+      const main = this.type;
+      const data = this.actor.system.configurations.liste[main].modules[key];
+      const img = "systems/knight/assets/icons/mechaarmure.svg";
+      const labelActivation = 'KNIGHT.AUTRE.Activer';
+      const labelAttaque = 'KNIGHT.AUTRE.Attaque';
+      const labelDegats = 'KNIGHT.AUTRE.Degats';
+      const labelViolence = 'KNIGHT.AUTRE.Violence';
+      const btn = [];
+
+      switch(key) {
+        case 'sautMarkIV':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelActivation),
+              data,
+              type:'activation',
+              img,
+            }));
+
+            if(data.active) {
+              btn.push(new KnightMAModuleButton({
+                main,
+                key,
+                name:game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.SAUTMARKIV.Atterrissage"),
+                data,
+                type:'special',
+                img,
+              }));
+            }
+          break;
+
+        case 'lamesCinetiquesGeantes':
+        case 'souffleDemoniaque':
+        case 'poingsSoniques':
+        case 'canonMetatron':
+        case 'mitrailleusesSurtur':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelAttaque),
+              data,
+              type:'attaque',
+              img,
+            }));
+          break;
+
+        case 'tourellesLasersAutomatisees':
+        case 'moduleInferno':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelDegats),
+              data,
+              type:'degats',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelViolence),
+              data,
+              type:'violence',
+              img,
+            }));
+          break;
+
+        case 'missilesJericho':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelDegats),
+              data,
+              type:'degats',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelDegats)} : ${game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.MISSILESJERICHO.ZoneExterieure`)}`,
+              data,
+              type:'special/degats',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelViolence),
+              data,
+              type:'violence',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelViolence)} : ${game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.MISSILESJERICHO.ZoneExterieure`)}`,
+              data,
+              type:'special/violence',
+              img,
+            }));
+          break;
+
+        case 'moduleWraith':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelActivation),
+              data,
+              type:'activation',
+              img,
+            }));
+
+            if(data.active) {
+              btn.push(new KnightMAModuleButton({
+                main,
+                key,
+                name:game.i18n.localize("KNIGHT.AUTRE.Prolonger"),
+                data,
+                type:'special',
+                img,
+              }));
+            }
+          break;
+
+        case 'canonNoe':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.LATERAL.Resilience")}`,
+              data,
+              type:'special',
+              img,
+            }));
+
+            btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.AUTRE.Label")}`,
+              data,
+              type:'activation',
+              img,
+            }));
+          break;
+
+        case 'nanoBrume':
+        case 'chocSonique':
+        case 'bouclierAmrita':
+        case 'volMarkIV':
+        case 'vagueSoin':
+        case 'podMiracle':
+        case 'dronesEvacuation':
+        case 'dronesAirain':
+        case 'moduleEmblem':
+        case 'podInvulnerabilite':
+        case 'modeSiegeTower':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelActivation),
+              data,
+              type:'activation',
+              img,
+            }));
+          break;
+
+        case 'stationDefenseAutomatise':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelActivation),
+              data,
+              type:'special',
+              img,
+            }));
+          break;
+
+        case 'canonMagma':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:game.i18n.localize(labelAttaque),
+              data,
+              type:'attaque',
+              img,
+            }));
+
+            btn.push(new KnightMAModuleButton({
+                main,
+                key,
+                name:game.i18n.localize('KNIGHT.MECHAARMURE.MODULES.CANONMAGMA.AneantirBande'),
+                data,
+                type:'special',
+                img,
+              }));
+          break;
+        case 'offering':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Degats")} / ${game.i18n.localize("KNIGHT.BONUS.Violence")}`,
+              data,
+              type:'multi/degats',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.BonusCaracteristique")}`,
+              data,
+              type:'multi/caracteristique',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Action")}`,
+              data,
+              type:'multi/action',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.ChampDeForce")}`,
+              data,
+              type:'multi/cdf',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Noyau")}`,
+              data,
+              type:'multi/noyaux',
+              img,
+            }));
+          break;
+
+        case 'curse':
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.DiminuerDegatsViolence")}`,
+              data,
+              type:'multi/degats',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.RetirerReussite")}`,
+              data,
+              type:'multi/reussite',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.BaisserResilience")} (1${game.i18n.localize("KNIGHT.JETS.Des-short")}6)`,
+              data,
+              type:'multi/baisserresilienceroll',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.BaisserResilience")} (3 ${game.i18n.localize("KNIGHT.AUTRE.Points")})`,
+              data,
+              type:'multi/baisserresiliencefixe',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.AnnulerChampDeForce")}`,
+              data,
+              type:'multi/champdeforce',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.AnnulerResilience")}`,
+              data,
+              type:'multi/annulerresilience',
+              img,
+            }));
+
+          btn.push(new KnightMAModuleButton({
+              main,
+              key,
+              name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.Choc")}`,
+              data,
+              type:'multi/choc',
+              img,
+            }));
+          break;
       }
 
-      get label() {
-        return this.name;
+      return btn;
+    }
+  }
+
+  class KnightCyberwareButton extends KnightActionAsItemButton {
+    constructor(options = {}) {
+      const {
+        data,
+        // Le reste ira au parent
+        ...parentArgs
+      } = options;
+
+      super(parentArgs); // n’envoie que ce que le parent comprend
+
+      this.data = data;
+    }
+
+    get classes() {
+      return ["feature-element", "center"];
+    }
+
+    get hasTooltip() {
+      return true;
+    }
+
+    get label() {
+      const data = this.data;
+      const sys = data.system;
+      let str = ``;
+
+      if(sys.activation.has && !sys.activation.permanent) str = sys.isActive ? game.i18n.localize("KNIGHT.AUTRE.Desactiver") : game.i18n.localize("KNIGHT.AUTRE.Activer")
+      else if(sys.recuperation.has) str = game.i18n.localize("KNIGHT.CYBERWARE.Utiliser");
+
+      return sys.recuperation.has && sys.recuperation.limite.max > 0 ? `${str}` : `${data.name}${str !== "" ? `<br/>${str}` : ``}`;
+    }
+
+    get icon() {
+      return this.data.img;
+    }
+
+    get isActive() {
+      let result = false;
+
+      return result;
+    }
+
+    get targets() {
+      let result = 0;
+
+      return result;
+    }
+
+    async getTooltipData() {
+      const details = [];
+      let tooltip = {};
+
+      tooltip.title = this.data.name;
+      tooltip.footerText = game.i18n.localize("enhancedcombathud-knight.OTHER.Lock");
+      tooltip.description = this.data.system.description;
+
+      if(this.data.system.activation.has) {
+        details.push({
+          label:game.i18n.localize("KNIGHT.ACTIVATION.Label"),
+          value:game.i18n.localize(`KNIGHT.ACTIVATION.${capitalizeFirstLetter(this.data.system.activation.type)}`),
+        });
+
+        details.push({
+          label:game.i18n.localize("KNIGHT.AUTRE.Energie"),
+          value:this.data.system.activation.energie,
+        });
+
+        details.push({
+          label:game.i18n.localize("KNIGHT.DUREE.Label"),
+          value:this.data.system.activation.duration,
+        });
       }
 
-      get icon() {
-        return "modules/enhancedcombathud-knight/assets/mechaarmure.svg";
-      }
+      tooltip.details = details;
 
-      async _getPanel() {
-        const panel = new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanel({ id: this.id, accordionPanelCategories: this._btn.map(({ label, buttons, uses }) => new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanelCategory({ label, buttons, uses })) });
+      return tooltip;
+    }
 
-        return panel;
-      }
+    async _onLeftClick(event) {
+      this.data.system.activate();
+    }
 
-      _prepareBtn() {
-        const capacites = this.actor.system.configurations.liste[this.type].modules;
-        let buttons = [];
-        let prepared = [];
+    async _renderInner() {
+      await super._renderInner();
 
-        if(!this.actor.system.getPilote) return prepared;
-        for(let c in capacites) {
-          buttons = this._handlerCapacities(c);
+      this.element.classList.add("capacity-element");
 
+      const title = this.element.querySelector(".action-element-title");
+      title.classList.remove("action-element-title");
+      title.classList.add("feature-element-title");
+    }
+  }
+
+  class KnightCyberwarePanelButton extends ARGON.MAIN.BUTTONS.ButtonPanelButton {
+    constructor(options = {}) {
+      const {
+        name,
+        type,
+        // Le reste ira au parent
+        ...parentArgs
+      } = options;
+        super(parentArgs); // n’envoie que ce que le parent comprend
+
+        this.name = name;
+        this.type = type;
+        this._btn = this._prepareBtn();
+    }
+
+    get id() {
+      return `${this.actor.id}-${this.type}-KnightCyberwarePanelButton`;
+    }
+
+    get label() {
+      return "KNIGHT.CYBERWARE.Label";
+    }
+
+    get icon() {
+      return "systems/knight/assets/icons/cyberware.svg";
+    }
+
+    async _getPanel() {
+      const panel = new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanel({ id: this.id, accordionPanelCategories: this._btn.map(({ label, buttons, uses }) => new ARGON.MAIN.BUTTON_PANELS.ACCORDION.AccordionPanelCategory({ label, buttons, uses })) });
+
+      return panel;
+    }
+
+    _prepareBtn() {
+      const cyberware = this.actor.items.filter(itm => itm.type === 'cyberware' && ((itm.system.activation.has && !itm.system.activation.permanent) || (itm.system.recuperation.has)))
+      let buttons = [];
+      let prepared = [];
+
+      for(let c of cyberware) {
+        if(c.system.recuperation.has && c.system.recuperation.limite.max > 0) {
           prepared.push({
-            label: `KNIGHT.MECHAARMURE.MODULES.${c.toUpperCase()}.Label`,
-            buttons,
+            label: c.name,
+            buttons:[new KnightCyberwareButton({
+              data:c,
+            })],
+            uses: () => {
+              return { max: c.system.recuperation.limite.max, value: c.system.recuperation.limite.value };
+            },
           });
+        } else {
+          buttons.push(
+            new KnightCyberwareButton({
+              data:c,
+            })
+          );
         }
 
-        return prepared;
       }
 
-      _handlerCapacities(key) {
-        const main = this.type;
-        const data = this.actor.system.configurations.liste[main].modules[key];
-        const img = "systems/knight/assets/icons/mechaarmure.svg";
-        const labelActivation = 'KNIGHT.AUTRE.Activer';
-        const labelAttaque = 'KNIGHT.AUTRE.Attaque';
-        const labelDegats = 'KNIGHT.AUTRE.Degats';
-        const labelViolence = 'KNIGHT.AUTRE.Violence';
-        const btn = [];
-
-        switch(key) {
-          case 'sautMarkIV':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelActivation),
-                data,
-                type:'activation',
-                img,
-              }));
-
-              if(data.active) {
-                btn.push(new KnightMAModuleButton({
-                  main,
-                  key,
-                  name:game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.SAUTMARKIV.Atterrissage"),
-                  data,
-                  type:'special',
-                  img,
-                }));
-              }
-            break;
-
-          case 'lamesCinetiquesGeantes':
-          case 'souffleDemoniaque':
-          case 'poingsSoniques':
-          case 'canonMetatron':
-          case 'mitrailleusesSurtur':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelAttaque),
-                data,
-                type:'attaque',
-                img,
-              }));
-            break;
-
-          case 'tourellesLasersAutomatisees':
-          case 'moduleInferno':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelDegats),
-                data,
-                type:'degats',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelViolence),
-                data,
-                type:'violence',
-                img,
-              }));
-            break;
-
-          case 'missilesJericho':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelDegats),
-                data,
-                type:'degats',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelDegats)} : ${game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.MISSILESJERICHO.ZoneExterieure`)}`,
-                data,
-                type:'special/degats',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelViolence),
-                data,
-                type:'violence',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelViolence)} : ${game.i18n.localize(`KNIGHT.MECHAARMURE.MODULES.MISSILESJERICHO.ZoneExterieure`)}`,
-                data,
-                type:'special/violence',
-                img,
-              }));
-            break;
-
-          case 'moduleWraith':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelActivation),
-                data,
-                type:'activation',
-                img,
-              }));
-
-              if(data.active) {
-                btn.push(new KnightMAModuleButton({
-                  main,
-                  key,
-                  name:game.i18n.localize("KNIGHT.AUTRE.Prolonger"),
-                  data,
-                  type:'special',
-                  img,
-                }));
-              }
-            break;
-
-          case 'canonNoe':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.LATERAL.Resilience")}`,
-                data,
-                type:'special',
-                img,
-              }));
-
-              btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.AUTRE.Label")}`,
-                data,
-                type:'activation',
-                img,
-              }));
-            break;
-
-          case 'nanoBrume':
-          case 'chocSonique':
-          case 'bouclierAmrita':
-          case 'volMarkIV':
-          case 'vagueSoin':
-          case 'podMiracle':
-          case 'dronesEvacuation':
-          case 'dronesAirain':
-          case 'moduleEmblem':
-          case 'podInvulnerabilite':
-          case 'modeSiegeTower':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelActivation),
-                data,
-                type:'activation',
-                img,
-              }));
-            break;
-
-          case 'stationDefenseAutomatise':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelActivation),
-                data,
-                type:'special',
-                img,
-              }));
-            break;
-
-          case 'canonMagma':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:game.i18n.localize(labelAttaque),
-                data,
-                type:'attaque',
-                img,
-              }));
-
-              btn.push(new KnightMAModuleButton({
-                  main,
-                  key,
-                  name:game.i18n.localize('KNIGHT.MECHAARMURE.MODULES.CANONMAGMA.AneantirBande'),
-                  data,
-                  type:'special',
-                  img,
-                }));
-            break;
-          case 'offering':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Degats")} / ${game.i18n.localize("KNIGHT.BONUS.Violence")}`,
-                data,
-                type:'multi/degats',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.BonusCaracteristique")}`,
-                data,
-                type:'multi/caracteristique',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Action")}`,
-                data,
-                type:'multi/action',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.ChampDeForce")}`,
-                data,
-                type:'multi/cdf',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.BONUS.Noyau")}`,
-                data,
-                type:'multi/noyaux',
-                img,
-              }));
-            break;
-
-          case 'curse':
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.DiminuerDegatsViolence")}`,
-                data,
-                type:'multi/degats',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.RetirerReussite")}`,
-                data,
-                type:'multi/reussite',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.BaisserResilience")} (1${game.i18n.localize("KNIGHT.JETS.Des-short")}6)`,
-                data,
-                type:'multi/baisserresilienceroll',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.BaisserResilience")} (3 ${game.i18n.localize("KNIGHT.AUTRE.Points")})`,
-                data,
-                type:'multi/baisserresiliencefixe',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.AnnulerChampDeForce")}`,
-                data,
-                type:'multi/champdeforce',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.AnnulerResilience")}`,
-                data,
-                type:'multi/annulerresilience',
-                img,
-              }));
-
-            btn.push(new KnightMAModuleButton({
-                main,
-                key,
-                name:`${game.i18n.localize(labelActivation)} : ${game.i18n.localize("KNIGHT.MECHAARMURE.MODULES.CURSE.Choc")}`,
-                data,
-                type:'multi/choc',
-                img,
-              }));
-            break;
-        }
-
-        return btn;
+      if(buttons.length > 0) {
+        prepared.unshift({
+          label: game.i18n.localize("KNIGHT.CYBERWARE.Label"),
+          buttons,
+        });
       }
+
+      return prepared;
+    }
   }
 
   return class KnightCapacitePanel extends ARGON.MAIN.ActionPanel {
@@ -2466,6 +2629,8 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
 
         if(items.find(itm => itm.type === 'capacite')) buttons.push(new KnightNPCCapacitePanelButton({items}));
       }
+
+      if(items.find(itm => itm.type === 'cyberware')) buttons.push(new KnightCyberwarePanelButton({items}));
 
       if(ignored.includes(type)) return buttons;
 

@@ -39,6 +39,7 @@ export function makeKnightItemButton(ARGON) {
           else if(item.type === 'capacite' &&
             item.system.attaque.has
           ) result = true;
+          else if(item.type === 'cyberware' && item?.system?.isActive && item?.system?.arme?.has) result = true;
 
           return result;
         }

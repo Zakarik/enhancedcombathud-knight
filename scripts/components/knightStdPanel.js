@@ -86,7 +86,6 @@ export function makeKnightPortraitPanel(ARGON) {
               break;
 
             case "armure":
-            case "energie":
               (Blocks.right).push([
                 { text: this._getAttrLabel(p) },
                 {
@@ -104,6 +103,66 @@ export function makeKnightPortraitPanel(ARGON) {
                       if (input) input.value = String(v);
                     }
                     actor?.update?.({ [`system.${p}.value`]: v });
+                  }
+                },
+                { text: "/" },
+                { text: this._getAttrMax(p) }
+              ]);
+              break;
+
+            case "energie":
+              (Blocks.right).push([
+                { text: this._getAttrLabel(p) },
+                {
+                  isinput: true,
+                  inputtype: "number",
+                  text: this._getAttrValue(p),
+                  class: p,
+                  changevent: (newvalue) => {
+                    const max = actor?.system?.[p]?.max ?? Number.POSITIVE_INFINITY;
+                    let v = Number(newvalue);
+                    if (Number.isNaN(v)) v = 0;
+                    if (v > max) {
+                      v = max;
+                      const input = this._rootEl?.querySelector(`.portrait-stat-block input.${CSS.escape(p)}`);
+                      if (input) input.value = String(v);
+                    }
+                    let update = {};
+
+                    if(actor.type === 'knight') {
+                      const wear = actor.system.whatWear;
+                      const cyberware = actor.items.filter(items => items.type === 'cyberware' && (items.system.categorie === 'utilitaire' || items.system.categorie === 'combat'));
+
+                      update[`system.equipements.${wear}.energie.value`] = v;
+
+                      const oldValue = actor?.system?.energie?.value ?? 0;
+                      const newValue = v < 20 ? v : 20;
+                      const armureEnergie = actor?.system?.equipements?.armure?.energie?.value ?? 0;
+
+                      switch(wear) {
+                        case 'armure':
+                          update['system.equipements.guardian.energie.value'] = newValue;
+                          update['system.equipements.tenueCivile.energie.value'] = newValue;
+                          break;
+                        case 'guardian':
+                          if(armureEnergie < 20) update['system.equipements.armure.energie.value'] = newValue;
+                          else if(oldValue > newValue) update['system.equipements.armure.energie.value'] = armureEnergie-(oldValue-newValue);
+                          else if(oldValue < newValue) update['system.equipements.armure.energie.value'] = armureEnergie+(newValue-oldValue);
+
+                          update['system.equipements.tenueCivile.energie.value'] = newValue;
+                          break;
+                        case 'tenueCivile':
+                          if(armureEnergie < 20) update['system.equipements.armure.energie.value'] = newValue;
+                          else if(oldValue > newValue) update['system.equipements.armure.energie.value'] = armureEnergie-(oldValue-newValue);
+                          else if(oldValue < newValue) update['system.equipements.armure.energie.value'] = armureEnergie+(newValue-oldValue);
+
+                          update['system.equipements.guardian.energie.value'] = newValue;
+                          break;
+                      }
+
+                    } else update[`system.${p}.value`] = v;
+
+                    actor?.update?.(update);
                   }
                 },
                 { text: "/" },

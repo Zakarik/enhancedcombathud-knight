@@ -1,3 +1,6 @@
+## 1.1.0
+- Mise à jour de compatibilité avec la future version du système KNIGHT.
+
 ## 1.0.3
 - Correction des armes qui ouvrait toujours la fenêtre de jet avec le style ARGON.
 

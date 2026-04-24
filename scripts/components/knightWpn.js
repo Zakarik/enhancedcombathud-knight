@@ -870,7 +870,7 @@ export function makeKnightWpnPanel(ARGON, KnightItemButton, KnightActionAsItemBu
 
     async _onLeftClick(event) {
       const dialog = this.actor.system.useWpn('grenades', {
-        type:this.key,
+        num:this.key,
       });
     }
 

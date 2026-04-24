@@ -1,3 +1,6 @@
+## 1.2.0
+- Compatibilité avec la V14
+
 ## 1.1.0
 - Mise à jour de compatibilité avec la future version du système KNIGHT.
 

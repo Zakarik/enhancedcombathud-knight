@@ -716,7 +716,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
               break;
 
             case 'shrine':
-              if(!data.active.distance6 && !data.active.distance && !data.active.personnel6) {
+              if(!data.active?.distance6 && !data.active?.distance && !data.active?.personnel6) {
                 buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.SHRINE.ENERGIE.Personnel')}`,
                   key:`${c}/_personnel`,
@@ -724,7 +724,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 })));
               }
 
-              if(!data.active.personnel && !data.active.personnel6 && !data.active.distance6) {
+              if(!data.active?.personnel && !data.active?.personnel6 && !data.active?.distance6) {
                 buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.SHRINE.ENERGIE.Distance')}`,
                   key:`${c}/_distance`,
@@ -734,7 +734,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
 
               if(data.energie.acces6tours) {
 
-                if(!data.active.personnel && !data.active.distance && !data.active.distance6) {
+                if(!data.active?.personnel && !data.active?.distance && !data.active?.distance6) {
                   buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
                     name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.SHRINE.ENERGIE.Personnel6Tours')}`,
                     key:`${c}/_personnel6`,
@@ -743,7 +743,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 }
 
 
-                if(!data.active.personnel && !data.active.distance && !data.active.personnel6) {
+                if(!data.active?.personnel && !data.active?.distance && !data.active?.personnel6) {
                   buttons.push(new KnightArmorCapacityButton(foundry.utils.mergeObject(std, {
                     name:`${game.i18n.localize('KNIGHT.ITEMS.ARMURE.CAPACITES.SHRINE.ENERGIE.Distance6Tours')}`,
                     key:`${c}/_distance6`,
@@ -752,7 +752,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 }
               }
 
-              if(data.active.personnel) {
+              if(data.active?.personnel) {
                 buttons.push(new KnightProlongerButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize("KNIGHT.AUTRE.Prolonger")}`,
                   key:`${c}/_personnel`,
@@ -760,7 +760,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 })));
               }
 
-              if(data.active.distance) {
+              if(data.active?.distance) {
                 buttons.push(new KnightProlongerButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize("KNIGHT.AUTRE.Prolonger")}`,
                   key:`${c}/_distance`,
@@ -768,7 +768,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 })));
               }
 
-              if(data.active.personnel6) {
+              if(data.active?.personnel6) {
                 buttons.push(new KnightProlongerButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize("KNIGHT.AUTRE.Prolonger")}`,
                   key:`${c}/_personnel6`,
@@ -776,7 +776,7 @@ export function makeKnightCapacitePanel(ARGON, KnightModulePanelButton, KnightPr
                 })));
               }
 
-              if(data.active.distance6) {
+              if(data.active?.distance6) {
                 buttons.push(new KnightProlongerButton(foundry.utils.mergeObject(std, {
                   name:`${game.i18n.localize("KNIGHT.AUTRE.Prolonger")}`,
                   key:`${c}/_distance6`,

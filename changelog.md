@@ -1,3 +1,6 @@
+## 1.2.1
+- Correction d'un bug avec la Paladin, empêchant le bon fonctionnement.
+
 ## 1.2.0
 - Compatibilité avec la V14
 
